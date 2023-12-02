@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Day01{
+public class Day01 implements AdventOfCodeDay{
 
   public static int getCalibrationValue(String str){
     String digitsOnly = str.replaceAll("[a-z]","");
