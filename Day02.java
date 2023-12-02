@@ -11,14 +11,14 @@ public class Day02{
     for(int k=0;k<games.length;k++){
       games[k] = input.get(k);
       gameIsValid[k] = true;
-      System.out.println(games[k]);
+      //System.out.println(games[k]);
       String sequence = games[k].split(":")[1];
       String[] shows = sequence.split(";");
       for(String show : shows){
-        System.out.println(show);
+        //System.out.println(show);
         String[] cubeCounts = show.split(",");
         for(String cubeCount : cubeCounts){
-          System.out.println(cubeCount);
+          //System.out.println(cubeCount);
           String[] tokens = cubeCount.split(" ");
           int count = Integer.parseInt(tokens[1]);
           String color = tokens[2];
