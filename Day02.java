@@ -38,6 +38,30 @@ public class Day02{
   }
 
   public static String getPart02(List<String> input){
-    return "0";
+    String[] games = new String[input.size()];
+    int total = 0;
+    for(int k=0;k<games.length;k++){
+      games[k] = input.get(k);
+      String sequence = games[k].split(":")[1];
+      String[] shows = sequence.split(";");
+      int minRed = 0;
+      int minGreen = 0;
+      int minBlue = 0;
+      for(String show : shows){
+        String[] cubeCounts = show.split(",");
+        for(String cubeCount : cubeCounts){
+          String[] tokens = cubeCount.split(" ");
+          int count = Integer.parseInt(tokens[1]);
+          String color = tokens[2];
+          if(color.equals("red")) { minRed = Math.max(minRed, count); }
+          if(color.equals("green")) { minGreen = Math.max(minGreen, count); }
+          if(color.equals("blue")) { minBlue = Math.max(minBlue, count); }
+        }
+      }
+      int power = minRed * minGreen * minBlue;
+      System.out.println("(" +minRed+","+minGreen+","+minBlue+"): "+power);
+      total += power;
+    }
+    return Integer.toString(total);
   }
 }
