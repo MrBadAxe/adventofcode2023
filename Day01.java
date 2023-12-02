@@ -98,4 +98,14 @@ public class Day01{
     }
     return Integer.toString(total);
   }
+
+  public static String getPart02(List<String> input){
+    int total = 0;
+    for(String str : input){
+      System.out.println(str + ": " + firstDigit(str) + lastDigit(str));
+      int calibrationValue = (firstDigit(str) * 10) + lastDigit(str);
+      total += calibrationValue;
+    }
+    return Integer.toString(total);
+  }
 }
