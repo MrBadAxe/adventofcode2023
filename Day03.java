@@ -3,6 +3,19 @@ public class Day03{
 
   private static String SYMBOLS = "*#+$@/%&=-";
 
+  private static char[][] parseSchematic(List<String> input){
+    int height = input.size();
+    int width = input.get(0).length();
+    char[][] schematic = new char[height][width];
+    for(int row=0;row<height;row++){
+      String schematicRow = input.get(row);
+      for(int col=0;col<width;col++){
+        schematic[row][col] = schematicRow.charAt(col);
+      }
+    }
+    return schematic;
+  }
+
   private static boolean isPartNumber(char[][] schematic, int row, int col){
     if(!Character.isDigit(schematic[row][col])){ return false; }
     int colStart = col;
@@ -23,17 +36,12 @@ public class Day03{
   }
 
   public static String getPart01(List<String> input){
-    int height = input.size();
-    int width = input.get(0).length();
-    char[][] schematic = new char[height][width];
-    for(int row=0;row<height;row++){
-      String schematicRow = input.get(row);
-      for(int col=0;col<width;col++){
-        schematic[row][col] = schematicRow.charAt(col);
-      }
-    }
+    char[][] schematic = parseSchematic(input);
 
     int total = 0;
+    int height = schematic.length;
+    int width = schematic[0].length;
+    
     for(int row=0;row<height;row++){
       for(int col=0;col<width;col++){
         if(Character.isDigit(schematic[row][col]) && isPartNumber(schematic,row,col)){
