@@ -7,7 +7,6 @@ public class Day04{
     String[] firstHalf = card.split("\\|")[0].strip().split(" ");
     HashSet<Integer> winningNumbers = new HashSet<Integer>();
     for(int k=0;k<firstHalf.length;k++){
-      //System.out.println(firstHalf[k]);
       if(firstHalf[k] != ""){
         winningNumbers.add(Integer.parseInt(firstHalf[k]));
       }
@@ -20,7 +19,6 @@ public class Day04{
         numbersYouHave++;
       }
     }
-    System.out.println(">"+numbersYouHave);
     return (numbersYouHave == 0 ? 0 : (int)Math.pow(2,(numbersYouHave-1)));
   }
 
