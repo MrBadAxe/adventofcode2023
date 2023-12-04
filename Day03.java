@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.HashSet;
 public class Day03{
 
   private static String SYMBOLS = "*#+$@/%&=-";
@@ -61,6 +62,36 @@ public class Day03{
           int partNumber = getNumberAt(schematic, row, col);
           total += partNumber;
           col += (int) Math.floor(Math.log10(partNumber)) + 1;
+        }
+      }
+    }
+
+    return Integer.toString(total);
+  }
+
+  public static String getPart02(List<String> input){
+    char[][] schematic = parseSchematic(input);
+
+    int height = schematic.length;
+    int width = schematic[0].length;
+    int total = 0;
+
+    for(int row=0;row<height;row++){
+      for(int col=0;col<width;col++){
+        if(schematic[row][col] == '*'){
+          HashSet<Integer> gears = new HashSet<Integer>();
+          for(int x=-1;x<=1;x++){
+            for(int y=-1;y<=1;y++){
+              gears.add(getNumberAt(schematic,row+x,col+y));
+            }
+          }
+          gears.remove(-1);
+          if(gears.size() == 2){
+            Integer i[] = new Integer[2];
+            i = gears.toArray(i);
+            int gearRatio = i[0]*i[1];
+            total += gearRatio;
+          }
         }
       }
     }
