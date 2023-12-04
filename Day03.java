@@ -16,6 +16,19 @@ public class Day03{
     return schematic;
   }
 
+  private static int getNumberAt(char[][] schematic, int row, int col){
+    if(!Character.isDigit(schematic[row][col])){ return -1; }
+    int colStart = col;
+    int colEnd = col;
+    while(colStart-1>=0 && Character.isDigit(schematic[row][colStart-1])){ colStart--; }
+    while(colEnd+1<schematic[row].length && Character.isDigit(schematic[row][colEnd+1])){ colEnd++; }
+    int z = 0;
+    for(int span=colStart; span<=colEnd; span++){
+      z = z*10 + (schematic[row][span] - '0');
+    }
+    return z;
+  }
+
   private static boolean isPartNumber(char[][] schematic, int row, int col){
     if(!Character.isDigit(schematic[row][col])){ return false; }
     int colStart = col;
@@ -41,16 +54,13 @@ public class Day03{
     int total = 0;
     int height = schematic.length;
     int width = schematic[0].length;
-    
+
     for(int row=0;row<height;row++){
       for(int col=0;col<width;col++){
         if(Character.isDigit(schematic[row][col]) && isPartNumber(schematic,row,col)){
-          int partNumber = (schematic[row][col] - '0');
-          while(col+1<schematic[row].length && Character.isDigit(schematic[row][col+1])){
-            col++;
-            partNumber = (partNumber * 10) + (schematic[row][col] - '0');
-          }
+          int partNumber = getNumberAt(schematic, row, col);
           total += partNumber;
+          col += (int) Math.floor(Math.log10(partNumber)) + 1;
         }
       }
     }
