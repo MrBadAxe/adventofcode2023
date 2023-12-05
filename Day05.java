@@ -34,6 +34,16 @@ public class Day05{
     return mapSteps;
   }
 
+  private static long applyMapStep(long num, ArrayList<MapTriple> mapStep){
+    long offset = 0;
+    for(MapTriple mt : mapStep){
+      if(mt.inRange(num)){
+        offset = mt.getOffset();
+      }
+    }
+    return num + offset;
+  }
+
   public static String getPart01(List<String> input){
     ArrayList<Long> seeds = getSeedsList(input.get(0));
     LinkedList<ArrayList<MapTriple>> mapSteps = getMapsList(input);
@@ -43,13 +53,7 @@ public class Day05{
       long seedValue = seed;
       System.out.println(seedValue);
       for(ArrayList<MapTriple> mapStep : mapSteps){
-        long offset = 0;
-        for(MapTriple mt : mapStep){
-          if(mt.inRange(seedValue)){
-            offset = mt.getOffset();
-          }
-        }
-        seedValue += offset;
+        seedValue = applyMapStep(seedValue,mapStep);
       }
       System.out.println(seedValue);
       System.out.println("");
