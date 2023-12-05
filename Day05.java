@@ -50,7 +50,6 @@ public class Day05{
           }
         }
         seedValue += offset;
-        //System.out.println(seedValue);
       }
       System.out.println(seedValue);
       System.out.println("");
