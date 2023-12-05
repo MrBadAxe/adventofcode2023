@@ -51,12 +51,9 @@ public class Day05{
     long lowest = Long.MAX_VALUE;
     for(Long seed : seeds){
       long seedValue = seed;
-      System.out.println(seedValue);
       for(ArrayList<MapTriple> mapStep : mapSteps){
         seedValue = applyMapStep(seedValue,mapStep);
       }
-      System.out.println(seedValue);
-      System.out.println("");
       lowest = Math.min(lowest,seedValue);
     }
 
