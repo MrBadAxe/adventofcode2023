@@ -59,4 +59,21 @@ public class Day05{
 
     return Long.toString(lowest);
   }
+
+  public static String getPart02(List<String> input){
+    ArrayList<Long> seeds = getSeedsList(input.get(0));
+    LinkedList<ArrayList<MapTriple>> mapSteps = getMapsList(input);
+
+    long lowest = Long.MAX_VALUE;
+    for(int k=0;k<seeds.size();k+=2){
+      for(long j=seeds.get(k);j<=(seeds.get(k)+seeds.get(k+1)-1);j++){
+        long seedValue = j;
+        for(ArrayList<MapTriple> mapStep : mapSteps){
+          seedValue = applyMapStep(seedValue,mapStep);
+        }
+        lowest = Math.min(lowest,seedValue);
+      }
+    }
+    return Long.toString(lowest);
+  }
 }
