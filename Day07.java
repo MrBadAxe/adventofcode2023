@@ -7,7 +7,7 @@ public class Day07{
     for(String line : input){
       String hand = line.split("\s")[0];
       int value = Integer.parseInt(line.split("\s")[1]);
-      hands.add(new CamelPokerHand(hand,value));
+      hands.add(new CamelPokerHand(hand,value,false));
     }
     Collections.sort(hands);
     int total = 0;

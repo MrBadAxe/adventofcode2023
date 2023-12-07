@@ -4,11 +4,13 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
   private String hand;
   private Rank rank;
   private int value;
+  private boolean hasJokers;
 
-  public CamelPokerHand(String str, int i){
+  public CamelPokerHand(String str, int i, boolean jokers){
     this.hand = str.toUpperCase().replaceAll("[^2-9AJKQT]","").substring(0,5);
     this.rank = calculateHandRank();
     this.value = i;
+    this.hasJokers = jokers;
   }
 
   private int getCardRankValue(char c){
@@ -70,6 +72,10 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
 
   public int getValue(){
     return this.value;
+  }
+
+  public boolean hasJokers(){
+    return this.hasJokers;
   }
 
   public String toString(){
