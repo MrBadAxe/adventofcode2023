@@ -9,17 +9,7 @@ public class Day07{
       int value = Integer.parseInt(line.split("\s")[1]);
       hands.add(new CamelPokerHand(hand,value));
     }
-    /*
-    for(CamelPokerHand cph : hands){
-      System.out.println(cph.toString());
-    }
-    */
     Collections.sort(hands);
-    /*
-    for(CamelPokerHand cph : hands){
-      System.out.println(cph.toString());
-    }
-    */
     int total = 0;
     for(int k=0;k<hands.size();k++){
       total += hands.get(k).getValue() * (k+1);
