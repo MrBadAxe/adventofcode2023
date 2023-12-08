@@ -50,13 +50,23 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
       }
     }
   }
+
   private Rank calculateHandRank(boolean jokers){
+    if(jokers){
+      return calculateHandRankWithJokers();
+    }else{
+      return calculateHandRank();
+    }
+  }
+
+  private Rank calculateHandRank(){
     int[] cardRanks = {0,0,0,0,0,0,0,0,0,0,0,0,0};
     for(int k=0;k<5;k++){
       char c = this.hand.charAt(k);
-      cardRanks[getCardRankValue(c,jokers)]++;
+      cardRanks[getCardRankValue(c,false)]++;
     }
     String groups = "";
+
     for(int k=0;k<13;k++){
       if(cardRanks[k] > 0){
         groups += Integer.toString(cardRanks[k]);
