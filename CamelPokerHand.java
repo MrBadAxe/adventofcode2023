@@ -162,8 +162,21 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
     return this.hasJokers;
   }
 
+  private String rankToString(Rank r){
+    switch(r){
+      case HIGH_CARD: return "high";
+      case ONE_PAIR: return "pair";
+      case TWO_PAIR: return "two";
+      case THREE_OF_A_KIND: return "three";
+      case FULL_HOUSE: return "house";
+      case FOUR_OF_A_KIND: return "four";
+      case FIVE_OF_A_KIND: return "five";
+      default: return "";
+    }
+  }
+
   public String toString(){
-    return this.hand + ":" + this.value;
+    return this.hand + ":" + this.value + "->" + rankToString(this.rank);
   }
 
   @Override
