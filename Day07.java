@@ -16,4 +16,21 @@ public class Day07{
     }
     return Integer.toString(total);
   }
+
+  public static String getPart02(List<String> input){
+    ArrayList<CamelPokerHand> hands = new ArrayList<CamelPokerHand>();
+    for(String line : input){
+      String hand = line.split("\s")[0];
+      int value = Integer.parseInt(line.split("\s")[1]);
+      hands.add(new CamelPokerHand(hand,value,true));
+    }
+    Collections.sort(hands);
+    int total = 0;
+    for(int k=0;k<hands.size();k++){
+      System.out.println(hands.get(k).toString());
+      total += hands.get(k).getValue() * (k+1);
+    }
+    return Integer.toString(total);
+  }
+
 }
