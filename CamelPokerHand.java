@@ -106,7 +106,6 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
     }
     int wild = cardRanks[0];
 
-    //System.out.println(this.hand + "->" + groups + "(" + wild + ")");
     if(groups.contains("5")){ return Rank.FIVE_OF_A_KIND;  }
     if(groups.contains("4")){
       switch(wild){

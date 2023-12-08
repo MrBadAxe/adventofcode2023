@@ -27,7 +27,6 @@ public class Day07{
     Collections.sort(hands);
     int total = 0;
     for(int k=0;k<hands.size();k++){
-      System.out.println(hands.get(k).toString());
       total += hands.get(k).getValue() * (k+1);
     }
     return Integer.toString(total);
