@@ -81,6 +81,71 @@ public class CamelPokerHand implements Comparable<CamelPokerHand>{
     return Rank.HIGH_CARD;
   }
 
+  private Rank calculateHandRankWithJokers(){
+    int[] cardRanks = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+    for(int k=0;k<5;k++){
+      char c = this.hand.charAt(k);
+      cardRanks[getCardRankValue(c,true)]++;
+    }
+    String groups = "";
+
+    for(int k=1;k<13;k++){
+      if(cardRanks[k] > 0){
+        groups += Integer.toString(cardRanks[k]);
+      }
+    }
+    int wild = cardRanks[0];
+
+    //System.out.println(this.hand + "->" + groups + "(" + wild + ")");
+    if(groups.contains("5")){ return Rank.FIVE_OF_A_KIND;  }
+    if(groups.contains("4")){
+      switch(wild){
+        case 1:   return Rank.FIVE_OF_A_KIND;
+        default:  return Rank.FOUR_OF_A_KIND;
+      }
+    }
+    if(groups.contains("3")){
+      switch(wild){
+        case 2:   return Rank.FIVE_OF_A_KIND;
+        case 1:   return Rank.FOUR_OF_A_KIND;
+        default:
+          if(groups.contains("2")){
+            return Rank.FULL_HOUSE;
+          }else{
+            return Rank.THREE_OF_A_KIND;
+          }
+      }
+    }
+    if(groups.contains("2")){
+      switch(wild){
+        case 3:   return Rank.FIVE_OF_A_KIND;
+        case 2:   return Rank.FOUR_OF_A_KIND;
+        case 1:
+          if(groups.contains("22")){
+            return Rank.FULL_HOUSE;
+          }else{
+            return Rank.THREE_OF_A_KIND;
+          }
+        default:
+          if(groups.contains("11")){
+            return Rank.ONE_PAIR;
+          }else{
+            return Rank.TWO_PAIR;
+          }
+      }
+    }
+    if(groups.contains("1")){
+      switch(wild){
+        case 4:   return Rank.FIVE_OF_A_KIND;
+        case 3:   return Rank.FOUR_OF_A_KIND;
+        case 2:   return Rank.THREE_OF_A_KIND;
+        case 1:   return Rank.ONE_PAIR;
+        default:  return Rank.HIGH_CARD;
+      }
+    }
+    return Rank.FIVE_OF_A_KIND; //all jokers!
+  }
+
   public String getHand(){
     return this.hand;
   }
