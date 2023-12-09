@@ -22,12 +22,11 @@ public class Day08{
     return map;
   }
 
-  private static int traverse(HashMap<String,LRNode> map, String directions){
+  private static int traverse(HashMap<String,LRNode> map, String directions, String start, String end){
     int index = 0;
     int steps = 0;
-    LRNode position = map.get("AAA");
-    while(!position.getName().equals("ZZZ")){
-      //System.out.println(position.getName());
+    LRNode position = map.get(start);
+    while(!position.getName().matches(end)){
       char nextDirection = directions.charAt(index);
       LRNode nextPosition = (nextDirection == 'L' ? position.getLeft() : position.getRight());
       position = nextPosition;
