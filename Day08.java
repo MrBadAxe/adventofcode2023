@@ -37,10 +37,7 @@ public class Day08{
   }
 
   private static long ghostTraverse(HashMap<String,LRNode> map, String directions){
-    int index = 0;
-    long steps = 0;
-
-    steps = 1;
+    long steps = 1;
     for(String nodeName : map.keySet()){
       if(nodeName.charAt(2) == 'A'){
         steps = lcm(steps, traverse(map, directions, nodeName,"..Z"));
