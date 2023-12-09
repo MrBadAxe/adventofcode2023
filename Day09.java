@@ -21,16 +21,20 @@ public class Day09{
       return sequence[0] - extrapolateLeft(calculateDiffs(sequence));
     }
   }
+  private static int[] parseSequence(String str){
+    String[] splitOnWhitespace = str.split("\s");
+    int sequenceLength = splitOnWhitespace.length;
+    int[] sequence = new int[sequenceLength];
+    for(int k=0;k<sequenceLength;k++){
+      sequence[k] = Integer.parseInt(splitOnWhitespace[k]);
+    }
+    return sequence;
+  }
 
   public static String getPart01(List<String> input){
     int total = 0;
     for(String str : input){
-      String[] splitOnWhitespace = str.split("\s");
-      int sequenceLength = splitOnWhitespace.length;
-      int[] sequence = new int[sequenceLength];
-      for(int k=0;k<sequenceLength;k++){
-        sequence[k] = Integer.parseInt(splitOnWhitespace[k]);
-      }
+      int[] sequence = parseSequence(str);
       total += extrapolateRight(sequence);
     }
     return Integer.toString(total);
@@ -38,12 +42,7 @@ public class Day09{
   public static String getPart02(List<String> input){
     int total = 0;
     for(String str : input){
-      String[] splitOnWhitespace = str.split("\s");
-      int sequenceLength = splitOnWhitespace.length;
-      int[] sequence = new int[sequenceLength];
-      for(int k=0;k<sequenceLength;k++){
-        sequence[k] = Integer.parseInt(splitOnWhitespace[k]);
-      }
+      int[] sequence = parseSequence(str);
       total += extrapolateLeft(sequence);
     }
     return Integer.toString(total);
