@@ -36,11 +36,37 @@ public class Day08{
     return steps;
   }
 
+  private static long ghostTraverse(HashMap<String,LRNode> map, String directions){
+    int index = 0;
+    long steps = 0;
+
+    steps = 1;
+    for(String nodeName : map.keySet()){
+      if(nodeName.charAt(2) == 'A'){
+        steps = lcm(steps, traverse(map, directions, nodeName,"..Z"));
+      }
+    }
+    return steps;
+  }
+  private static long gcd(long a, long b){
+    return (b == 0 ? a : gcd(b,a%b));
+  }
+  private static long lcm(long a, long b){
+    return Math.abs(a*b)/gcd(a,b);
+  }
+
   public static String getPart01(List<String> input){
     String directions = input.remove(0);
     String blank = input.remove(0);
     HashMap<String,LRNode> map = buildMap(input);
-    int steps = traverse(map, directions);
+    int steps = traverse(map, directions, "AAA", "ZZZ");
     return Integer.toString(steps);
+  }
+  public static String getPart02(List<String> input){
+    String directions = input.remove(0);
+    String blank = input.remove(0);
+    HashMap<String,LRNode> map = buildMap(input);
+    long steps = ghostTraverse(map, directions);
+    return Long.toString(steps);
   }
 }
