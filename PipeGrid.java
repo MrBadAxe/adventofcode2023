@@ -126,5 +126,50 @@ public class PipeGrid{
       }
     }
   }
+  private void markInsideOutside(){
+    clearNonLoop();
+
+    for(int row=0;row<HEIGHT;row++){
+      boolean inside = false;
+      boolean pipeFromTop = false;
+      boolean pipeFromBottom = false;
+
+      for(int col=0;col<WIDTH;col++){
+        char c = this.get(row,col);
+        if(c=='S'){
+          c = identifyStartEquivalentPiece();
+        }
+        switch(c){
+          case '.':
+            this.set(row,col,(inside ? 'I' : 'O'));
+            break;
+          case '|':
+            inside = !inside;
+            break;
+          case 'F':
+            pipeFromBottom = true;
+            break;
+          case 'L':
+            pipeFromTop = true;
+            break;
+          case '7':
+            if(pipeFromTop){
+              inside = !inside;
+            }
+            pipeFromTop = false;
+            pipeFromBottom = false;
+            break;
+          case 'J':
+            if(pipeFromBottom){
+              inside = !inside;
+            }
+            pipeFromTop = false;
+            pipeFromBottom = false;
+            break;
+          default:
+        }
+      }
+    }
+  }
 
 }
