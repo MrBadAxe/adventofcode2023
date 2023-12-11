@@ -171,5 +171,17 @@ public class PipeGrid{
       }
     }
   }
+  public int countInsideLoop(){
+    markInsideOutside();
+    int total = 0;
+    for(int row=0;row<HEIGHT;row++){
+      for(int col=0;col<WIDTH;col++){
+        if(get(row,col) == 'I'){
+          total++;
+        }
+      }
+    }
+    return total;
+  }
 
 }
