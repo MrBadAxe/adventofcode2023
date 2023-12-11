@@ -69,7 +69,7 @@ public class PipeGrid{
     }
     return z;
   }
-  public char identifyStartEquivalentPiece(){
+  private char identifyStartEquivalentPiece(){
     Point start = getStart();
     long row = start.getX();
     long col = start.getY();
