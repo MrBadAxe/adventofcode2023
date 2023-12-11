@@ -15,8 +15,12 @@ public class Day10{
 
   public static String getPart01(List<String> input){
     PipeGrid map = parsePipeMap(input);
-    Point start = map.getStart();
     List<Point> path = map.getAllPointsOnLoop();
     return Integer.toString((path.size()-1)/2);
+  }
+  public static String getPart02(List<String> input){
+    PipeGrid map = parsePipeMap(input);
+    int total = map.countInsideLoop();
+    return Integer.toString(total);
   }
 }

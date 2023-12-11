@@ -44,5 +44,6 @@ public class AdventOfCode2023{
     System.out.println("Day 09 Part 02: " + Day09.getPart02(readInput("./input_day09.txt")));
     */
     System.out.println("Day 10 Part 01: " + Day10.getPart01(readInput("./input_day10.txt")));
+    System.out.println("Day 10 Part 02: " + Day10.getPart02(readInput("./input_day10.txt")));
   }
 }
