@@ -69,6 +69,32 @@ public class PipeGrid{
     }
     return z;
   }
+  public char identifyStartEquivalentPiece(){
+    Point start = getStart();
+    long row = start.getX();
+    long col = start.getY();
+    ArrayList<Point> exits = exits(start);
+
+    if(row != 0 && exits.contains(new Point(row-1,col))){
+      if(col != 0 && exits.contains(new Point(row,col-1))){
+        return 'J';
+      }else if(col != (WIDTH-1) && exits.contains(new Point(row,col+1))){
+        return 'L';
+      }else{
+        return '|';
+      }
+    }else if(row != (HEIGHT-1) && exits.contains(new Point(row+1,col))){
+      if(col != 0 && exits.contains(new Point(row,col-1))){
+        return '7';
+      }else if(col != (WIDTH-1) && exits.contains(new Point(row,col+1))){
+        return 'F';
+      }else{
+        return '|';
+      }
+    }else{
+      return '-';
+    }
+  }
   public ArrayList<Point> getAllPointsOnLoop(){
     ArrayList<Point> path = new ArrayList<Point>();
     Point start = getStart();
