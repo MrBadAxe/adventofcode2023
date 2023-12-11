@@ -116,5 +116,15 @@ public class PipeGrid{
     }
     return path;
   }
+  private void clearNonLoop(){
+    ArrayList<Point> path = getAllPointsOnLoop();
+    for(int row=0;row<HEIGHT;row++){
+      for(int col=0;col<WIDTH;col++){
+        if(!path.contains(new Point(row,col))){
+          this.set(row,col,'.');
+        }
+      }
+    }
+  }
 
 }
