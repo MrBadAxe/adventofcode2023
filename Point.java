@@ -19,6 +19,10 @@ public class Point{
     return this.y;
   }
 
+  public long taxicabDistance(Point other){
+    return Math.abs(other.getX() - this.getX()) + Math.abs(other.getY() - this.getY());
+  }
+
   @Override
   public boolean equals(Object o){
     if(o == this){ return true; }
