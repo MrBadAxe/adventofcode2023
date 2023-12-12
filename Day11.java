@@ -50,8 +50,6 @@ public class Day11{
     ArrayList<Point> galaxies = map.findAllGalaxies();
     ArrayList<Integer> emptyRows = map.getEmptyRows();
     ArrayList<Integer> emptyCols = map.getEmptyCols();
-    System.out.println(emptyRows);
-    System.out.println(emptyCols);
     ArrayList<Point> expanded = expand(galaxies,emptyRows,emptyCols,1);
 
     long total = 0;
