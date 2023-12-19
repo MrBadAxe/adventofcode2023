@@ -54,10 +54,7 @@ public class Day13{
       while(end < input.size() && !input.get(end).equals("")){
         end++;
       }
-      System.out.println(start + " " + end);
       LavaGrid grid = parseLavaGrid(input,start,end);
-      System.out.println(grid.toString());
-      System.out.println(calculateGridScore(grid));
       total += calculateGridScore(grid);
 
       start = end+1;
