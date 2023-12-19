@@ -15,9 +15,15 @@ public class Day13{
     return grid;
   }
   public static int calculateGridScore(LavaGrid grid){
-    int h = grid.findReflectionH();
-    int v = grid.findReflectionV();
-    return ((h+1)*100 + (v+1));
+    int z = 0;
+
+    List<Integer> h = grid.findReflectionsH();
+    z += (h.size() > 0 ? ((h.get(0)+1)*100) : 0);
+
+    List<Integer> v = grid.findReflectionsV();
+    z += (v.size() > 0 ? (v.get(0)+1) : 0);
+
+    return z;
   }
   public static String getPart01(List<String> input){
     int total = 0;
