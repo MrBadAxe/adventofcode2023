@@ -18,6 +18,9 @@ public class ParabolicDish extends CharGrid{
       for(int k=start;k<end;k++){
         z[k] = (k-start<spheres) ? 'O' : '.';
       }
+      if(end < stripe.length){
+        z[end] = '#';
+      }
       start = end+1;
       end = start;
       spheres = 0;
