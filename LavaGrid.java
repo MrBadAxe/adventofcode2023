@@ -1,30 +1,8 @@
-public class LavaGrid implements Cloneable{
-  private final int HEIGHT;
-  private final int WIDTH;
-  private char[][] grid;
 import java.util.ArrayList;
 
+public class LavaGrid extends CharGrid{
   public LavaGrid(int x, int y, char init){
-    this.HEIGHT = x;
-    this.WIDTH = y;
-    this.grid = new char[HEIGHT][WIDTH];
-    for(int row=0;row<HEIGHT;row++){
-      for(int col=0;col<WIDTH;col++){
-        grid[row][col] = init;
-      }
-    }
-  }
-  public int getHeight(){
-    return this.HEIGHT;
-  }
-  public int getWidth(){
-    return this.WIDTH;
-  }
-  public char get(int row, int col){
-    return grid[row][col];
-  }
-  public void set(int row, int col, char c){
-    grid[row][col] = c;
+    super(x,y,init);
   }
   public char[] getRow(int row){
     char[] z = new char[WIDTH];
@@ -37,16 +15,6 @@ import java.util.ArrayList;
     char[] z = new char[HEIGHT];
     for(int row=0;row<HEIGHT;row++){
       z[row] = grid[row][col];
-    }
-    return z;
-  }
-  public String toString(){
-    String z = "";
-    for(int row=0;row<HEIGHT;row++){
-      for(int col=0;col<WIDTH;col++){
-        z += grid[row][col];
-      }
-      z += "\n";
     }
     return z;
   }

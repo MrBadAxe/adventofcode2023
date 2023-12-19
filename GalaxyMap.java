@@ -1,36 +1,8 @@
 import java.util.ArrayList;
 
-public class GalaxyMap{
-  private final char EMPTY = '.';
-  public final int HEIGHT;
-  public final int WIDTH;
-  char[][] grid;
-
+public class GalaxyMap extends CharGrid{
   public GalaxyMap(int height, int width){
-    this.HEIGHT = height;
-    this.WIDTH = width;
-    this.grid = new char[HEIGHT][WIDTH];
-    for(int row=0;row<HEIGHT;row++){
-      for(int col=0;col<WIDTH;col++){
-        grid[row][col] = EMPTY;
-      }
-    }
-  }
-  public char get(int row, int col){
-    return grid[row][col];
-  }
-  public void set(int row, int col, char c){
-    grid[row][col] = c;
-  }
-  public String toString(){
-    String z = "";
-    for(int row=0;row<HEIGHT;row++){
-      for(int col=0;col<WIDTH;col++){
-        z += this.get(row,col);
-      }
-      z += "\n";
-    }
-    return z;
+    super(height, width, '.');
   }
 
   public ArrayList<Point> findAllGalaxies(){
@@ -44,7 +16,6 @@ public class GalaxyMap{
     }
     return galaxies;
   }
-
   public ArrayList<Integer> getEmptyRows(){
     ArrayList<Integer> emptyRows = new ArrayList<Integer>();
     for(int row=0;row<HEIGHT;row++){
