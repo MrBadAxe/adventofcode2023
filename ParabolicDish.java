@@ -36,6 +36,42 @@ public class ParabolicDish extends CharGrid{
       }
     }
   }
+  public void tiltSouth(){
+    for(int col=0;col<this.getWidth();col++){
+      char[] stripe = new char[this.getHeight()];
+      for(int row=0;row<this.getHeight();row++){
+        stripe[row] = this.get(this.getHeight() - (row+1),col);
+      }
+      stripe = push(stripe);
+      for(int row=0;row<this.getHeight();row++){
+        this.set(this.getHeight() - (row+1),col,stripe[row]);
+      }
+    }
+  }
+  public void tiltWest(){
+    for(int row=0;row<this.getHeight();row++){
+      char[] stripe = new char[this.getWidth()];
+      for(int col=0;col<this.getWidth();col++){
+        stripe[col] = this.get(row,col);
+      }
+      stripe = push(stripe);
+      for(int col=0;col<this.getWidth();col++){
+        this.set(row,col,stripe[col]);
+      }
+    }
+  }
+  public void tiltEast(){
+    for(int row=0;row<this.getHeight();row++){
+      char[] stripe = new char[this.getWidth()];
+      for(int col=0;col<this.getWidth();col++){
+        stripe[col] = this.get(row,this.getWidth() - (col+1));
+      }
+      stripe = push(stripe);
+      for(int col=0;col<this.getWidth();col++){
+        this.set(row,this.getWidth() - (col+1),stripe[col]);
+      }
+    }
+  }
 
   public int getLoad(){
     int total = 0;
