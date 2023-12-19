@@ -66,4 +66,43 @@ public class Day13{
 
     return Integer.toString(total);
   }
+  public static String getPart02(List<String> input){
+    int total = 0;
+
+    int start=0;
+    int end = start;
+    while(end < input.size()){
+      while(end < input.size() && !input.get(end).equals("")){
+        end++;
+      }
+      LavaGrid grid = parseLavaGrid(input,start,end);
+      int score = calculateGridScore(grid);
+      for(int row=0;row<grid.getHeight();row++){
+        for(int col=0;col<grid.getWidth();col++){
+          LavaGrid smudge = grid.smudge(row,col);
+          int smudgeScore = calculateAlternateGridScore(grid, smudge);
+          if(smudgeScore != 0 && smudgeScore != score){
+            row = grid.getHeight();
+            col = grid.getWidth();
+
+            int scoreHund = score / 100;
+            int smudgeHund = smudgeScore / 100;
+            int scoreUnit = score % 100;
+            int smudgeUnit = smudgeScore % 100;
+            if(smudgeHund != scoreHund){
+              score = smudgeHund*100;
+            }else{
+              score = smudgeUnit;
+            }
+          }
+        }
+      }
+      total += score;
+
+      start = end+1;
+      end = start;
+    }
+
+    return Integer.toString(total);
+  }
 }
