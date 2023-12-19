@@ -27,7 +27,8 @@ public class ParabolicDish extends CharGrid{
     }
     return z;
   }
-  public void tiltNorth(){
+  public ParabolicDish tiltNorth(){
+    ParabolicDish other = new ParabolicDish(this.getHeight(),this.getWidth());
     for(int col=0;col<this.getWidth();col++){
       char[] stripe = new char[this.getHeight()];
       for(int row=0;row<this.getHeight();row++){
@@ -35,11 +36,13 @@ public class ParabolicDish extends CharGrid{
       }
       stripe = push(stripe);
       for(int row=0;row<this.getHeight();row++){
-        this.set(row,col,stripe[row]);
+        other.set(row,col,stripe[row]);
       }
     }
+    return other;
   }
-  public void tiltSouth(){
+  public ParabolicDish tiltSouth(){
+    ParabolicDish other = new ParabolicDish(this.getHeight(),this.getWidth());
     for(int col=0;col<this.getWidth();col++){
       char[] stripe = new char[this.getHeight()];
       for(int row=0;row<this.getHeight();row++){
@@ -47,11 +50,13 @@ public class ParabolicDish extends CharGrid{
       }
       stripe = push(stripe);
       for(int row=0;row<this.getHeight();row++){
-        this.set(this.getHeight() - (row+1),col,stripe[row]);
+        other.set(this.getHeight() - (row+1),col,stripe[row]);
       }
     }
+    return other;
   }
-  public void tiltWest(){
+  public ParabolicDish tiltWest(){
+    ParabolicDish other = new ParabolicDish(this.getHeight(),this.getWidth());
     for(int row=0;row<this.getHeight();row++){
       char[] stripe = new char[this.getWidth()];
       for(int col=0;col<this.getWidth();col++){
@@ -59,11 +64,13 @@ public class ParabolicDish extends CharGrid{
       }
       stripe = push(stripe);
       for(int col=0;col<this.getWidth();col++){
-        this.set(row,col,stripe[col]);
+        other.set(row,col,stripe[col]);
       }
     }
+    return other;
   }
-  public void tiltEast(){
+  public ParabolicDish tiltEast(){
+    ParabolicDish other = new ParabolicDish(this.getHeight(),this.getWidth());
     for(int row=0;row<this.getHeight();row++){
       char[] stripe = new char[this.getWidth()];
       for(int col=0;col<this.getWidth();col++){
@@ -71,9 +78,10 @@ public class ParabolicDish extends CharGrid{
       }
       stripe = push(stripe);
       for(int col=0;col<this.getWidth();col++){
-        this.set(row,this.getWidth() - (col+1),stripe[col]);
+        other.set(row,this.getWidth() - (col+1),stripe[col]);
       }
     }
+    return other;
   }
 
   public int getLoad(){
