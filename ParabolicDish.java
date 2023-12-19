@@ -3,34 +3,34 @@ public class ParabolicDish extends CharGrid{
     super(height, width, '.');
   }
 
+  public char[] push(char[] stripe){
+    char[] z = new char[stripe.length];
+    int start = 0;
+    int end = 0;
+    int spheres = 0;
+    while(end < stripe.length){
+      while(end < stripe.length && stripe[end] != '#'){
+        if(stripe[end] == 'O'){
+          spheres++;
+        }
+        end++;
+      }
+      for(int k=start;k<end;k++){
+        z[k] = (k-start<spheres) ? 'O' : '.';
+      }
+      start = end+1;
+      end = start;
+      spheres = 0;
+    }
+    return z;
+  }
   public void tiltNorth(){
-    char[] stripe;
     for(int col=0;col<this.getWidth();col++){
-      stripe = new char[this.getHeight()];
+      char[] stripe = new char[this.getHeight()];
       for(int row=0;row<this.getHeight();row++){
         stripe[row] = this.get(row,col);
       }
-      int start = 0;
-      int end = 0;
-      int spheres = 0;
-      while(end < stripe.length){
-        while(end < stripe.length && stripe[end] != '#'){
-          if(stripe[end] == 'O'){
-            spheres++;
-          }
-          end++;
-        }
-        for(int k=start;k<end;k++){
-          if(k-start<spheres){
-            stripe[k] = 'O';
-          }else{
-            stripe[k] = '.';
-          }
-        }
-        start = end+1;
-        end = start;
-        spheres = 0;
-      }
+      stripe = push(stripe);
       for(int row=0;row<this.getHeight();row++){
         this.set(row,col,stripe[row]);
       }
