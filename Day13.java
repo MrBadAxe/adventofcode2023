@@ -25,6 +25,26 @@ public class Day13{
 
     return z;
   }
+  public static int calculateAlternateGridScore(LavaGrid before, LavaGrid after){
+    int z = 0;
+
+    List<Integer> hBefore = before.findReflectionsH();
+    List<Integer> hAfter = after.findReflectionsH();
+    if(hBefore.size() < hAfter.size()){
+      hAfter.removeAll(hBefore);
+    }
+    z += (hAfter.size() > 0 ? (hAfter.get(0) + 1)*100 : 0);
+    //if(z != 0){ return z; }
+
+    List<Integer> vBefore = before.findReflectionsV();
+    List<Integer> vAfter = after.findReflectionsV();
+    if(vBefore.size() < vAfter.size()){
+      vAfter.removeAll(vBefore);
+    }
+    z += (vAfter.size() > 0 ? (vAfter.get(0) + 1) : 0);
+
+    return z;
+  }
   public static String getPart01(List<String> input){
     int total = 0;
 
