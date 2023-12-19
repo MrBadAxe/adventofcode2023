@@ -3,7 +3,20 @@ public class ParabolicDish extends CharGrid{
     super(height, width, '.');
   }
 
-  public char[] push(char[] stripe){
+  public static ParabolicDish fromString(String str){
+    String[] lines = str.split("\n");
+    int height = lines.length;
+    int width = lines[0].length();
+    ParabolicDish dish = new ParabolicDish(height,width);
+    for(int row=0;row<dish.getHeight();row++){
+      for(int col=0;col<dish.getWidth();col++){
+        dish.set(row,col,lines[row].charAt(col));
+      }
+    }
+    return dish;
+  }
+
+  private char[] push(char[] stripe){
     char[] z = new char[stripe.length];
     int start = 0;
     int end = 0;
