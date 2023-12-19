@@ -3,11 +3,9 @@ import java.util.List;
 public class Day13{
   private static LavaGrid parseLavaGrid(List<String> input, int start, int end){
     int height = (end - start);
-    //System.out.println(height);
     LavaGrid grid = new LavaGrid(height, input.get(start).length(),'.');
     for(int row=0;row<grid.getHeight();row++){
       String line = input.get(row+start);
-      //System.out.println(line);
       for(int col=0;col<grid.getWidth();col++){
         grid.set(row,col,line.charAt(col));
       }
@@ -34,7 +32,6 @@ public class Day13{
       hAfter.removeAll(hBefore);
     }
     z += (hAfter.size() > 0 ? (hAfter.get(0) + 1)*100 : 0);
-    //if(z != 0){ return z; }
 
     List<Integer> vBefore = before.findReflectionsV();
     List<Integer> vAfter = after.findReflectionsV();
