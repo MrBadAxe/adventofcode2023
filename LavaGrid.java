@@ -2,6 +2,7 @@ public class LavaGrid implements Cloneable{
   private final int HEIGHT;
   private final int WIDTH;
   private char[][] grid;
+import java.util.ArrayList;
 
   public LavaGrid(int x, int y, char init){
     this.HEIGHT = x;
@@ -69,7 +70,8 @@ public class LavaGrid implements Cloneable{
     }
     return true;
   }
-  public int findReflectionH(){
+  public ArrayList<Integer> findReflectionsH(){
+    ArrayList<Integer> z = new ArrayList<Integer>();
     for(int row=0;row<HEIGHT-1;row++){
       if(LavaGrid.linesMatch(this.getRow(row),this.getRow(row+1))){
         int start = row;
@@ -77,16 +79,16 @@ public class LavaGrid implements Cloneable{
         while(start-1 >= 0 && end+1 < this.getHeight() && LavaGrid.linesMatch(this.getRow(start-1),this.getRow(end+1))){
           start--;
           end++;
-          //System.out.println(start + " " + end);
         }
         if(start == 0 || end == this.getHeight()-1){
-          return row;
+          z.add(row);
         }
       }
     }
-    return -1;
+    return z;
   }
-  public int findReflectionV(){
+  public ArrayList<Integer> findReflectionsV(){
+    ArrayList<Integer> z = new ArrayList<Integer>();
     for(int col=0;col<WIDTH-1;col++){
       if(LavaGrid.linesMatch(this.getCol(col),this.getCol(col+1))){
         int start = col;
@@ -94,13 +96,12 @@ public class LavaGrid implements Cloneable{
         while(start-1 >= 0 && end+1 < this.getWidth() && LavaGrid.linesMatch(this.getCol(start-1),this.getCol(end+1))){
           start--;
           end++;
-          //System.out.println(start + " " + end);
         }
         if(start == 0 || end == this.getWidth()-1){
-          return col;
+          z.add(col);
         }
       }
     }
-    return -1;
+    return z;
   }
 }
