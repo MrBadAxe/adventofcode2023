@@ -59,6 +59,15 @@ import java.util.ArrayList;
     }
     return z;
   }
+  public LavaGrid smudge(int row, int col){
+    LavaGrid z = (LavaGrid)this.clone();
+    if(z.get(row,col) == '#'){
+      z.set(row,col,'.');
+    }else{
+      z.set(row,col,'#');
+    }
+    return z;
+  }
   public static boolean linesMatch(char[] a, char[] b){
     if(a.length != b.length){
       return false;
