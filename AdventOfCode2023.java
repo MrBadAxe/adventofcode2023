@@ -60,6 +60,6 @@ public class AdventOfCode2023{
     */
 
     System.out.println("Day 15 Part 01: " + Day15.getPart01(readInput("./input_day15.txt")));
-    //System.out.println("Day 15 Part 02: " + Day15.getPart02(readInput("./input_day15_short.txt")));
+    System.out.println("Day 15 Part 02: " + Day15.getPart02(readInput("./input_day15.txt")));
   }
 }
