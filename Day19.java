@@ -7,14 +7,12 @@ public class Day19{
     HashMap<String,Workflow> workflows = new HashMap<String,Workflow>();
     while(index < end){
       String line = input.get(index);
-      System.out.println("##" + line);
       String[] tokens = line.split("\\{");
       String workflowName = tokens[0];
       String workflowRuleList = tokens[1].substring(0,tokens[1].length()-1);
       Workflow w = new Workflow();
       String[] ruleListSplit = workflowRuleList.split(",");
       for(int k=0;k<ruleListSplit.length;k++){
-        System.out.println(ruleListSplit[k]);
         WorkflowRule rule;
         if(ruleListSplit[k].contains(":")){
           String[] colonSplit = ruleListSplit[k].split(":");
@@ -59,9 +57,7 @@ public class Day19{
     }
 
     HashMap<String,Workflow> workflows = parseWorkflows(input,0,index);
-    System.out.println(workflows);
     ArrayList<Part> parts = parseParts(input, index+1, input.size());
-    System.out.println(parts);
 
     int total = 0;
 
@@ -69,7 +65,6 @@ public class Day19{
       String currentWorkflow = "in";
       while(!currentWorkflow.equals("A") && !currentWorkflow.equals("R")){
         String newWorkflow = workflows.get(currentWorkflow).process(part);
-        System.out.println(newWorkflow);
         currentWorkflow = newWorkflow;
       }
       if(currentWorkflow.equals("A")){

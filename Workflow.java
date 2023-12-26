@@ -41,9 +41,7 @@ public class Workflow{
     z.add(range);
     for(int k=0;k<rules.size() && z.size()<2;k++){
       WorkflowRule rule = rules.get(k);
-      System.out.println(rule);
       z = partition(z.get(0),rule);
-      System.out.println(k + " " + rules.size() + " " + z.size());
     }
     return z;
   }
