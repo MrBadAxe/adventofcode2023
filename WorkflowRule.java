@@ -10,11 +10,24 @@ public class WorkflowRule{
     this.threshold = t;
     this.destination = d;
   }
-  public boolean apply(Part p){
-    return (polarity ? p.getRating(this.rating) > this.threshold : p.getRating(this.rating) < this.threshold);
+  public char getRating(){
+    return this.rating;
+  }
+  public boolean getPolarity(){
+    return this.polarity;
+  }
+  public int getThreshold(){
+    return this.threshold;
   }
   public String getDestination(){
     return this.destination;
+  }
+
+  public boolean apply(Part p){
+    return (polarity ? p.getRating(this.rating) > this.threshold : p.getRating(this.rating) < this.threshold);
+  }
+  public boolean apply(PartRange r){
+    return (polarity ? (!(r.getMaxRating(this.rating) <= this.threshold)) : (!(r.getMinRating(this.rating) >= this.threshold)));
   }
   public String toString(){
     String z = "";
