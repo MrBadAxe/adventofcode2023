@@ -47,6 +47,23 @@ public class Workflow{
     }
     return z;
   }
+  public String process(PartRange range, WorkflowRule rule){
+    if(partition(range,rule).size() > 1){
+      return "multiple";
+    }else if(rule.apply(range)){
+      return rule.getDestination();
+    }else{
+      return "";
+    }
+  }
+  public String processAll(PartRange range){
+    for(int k=0;k<rules.size();k++){
+      if(rules.get(k).apply(range)){
+        return process(range,rules.get(k));
+      }
+    }
+    return "";
+  }
   public String toString(){
     String z = "";
     for(int k=0;k<rules.size();k++){
