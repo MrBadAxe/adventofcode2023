@@ -73,4 +73,34 @@ public class Day19{
     }
     return Integer.toString(total);
   }
+  public static String getPart02(List<String> input){
+    int index = 0;
+    while(!input.get(index).equals("")){
+      index++;
+    }
+    HashMap<String,Workflow> workflows = parseWorkflows(input,0,index);
+
+    long total = 0;
+
+    ArrayList<PartRange> ranges = new ArrayList<PartRange>();
+    ranges.add(new PartRange());
+    while(ranges.size() > 0){
+      String currentWorkflow = "in";
+      PartRange range = ranges.remove(0);
+      while(!currentWorkflow.equals("A") && !currentWorkflow.equals("R") && !currentWorkflow.equals("multiple")){
+        String newWorkflow = workflows.get(currentWorkflow).processAll(range);
+        if(newWorkflow.equals("multiple")){
+          ArrayList<PartRange> newRanges = workflows.get(currentWorkflow).partition(range);
+          ranges.addAll(newRanges);
+        }
+        currentWorkflow = newWorkflow;
+      }
+      if(currentWorkflow.equals("A")){
+        total += range.getRangeQuantity();
+      }
+    }
+
+    return Long.toString(total);
+  }
+
 }
